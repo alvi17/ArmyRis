@@ -1,0 +1,55 @@
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon">
+                    <i class="fa fa-align-justify"></i>									
+                </span>
+                <h5><?php echo $pageTitle;?></h5>
+                <span title="" class="label label-info tip-left" style="padding:5px;" data-original-title="Back to User Details Page">
+                    <a href="building-router-mapping.php" style="color: white;">Back to Building-Router Mapping</a>
+                </span>
+            </div>
+            <div class="widget-content nopadding">
+                <form class="form-horizontal" method="post" action="" name="user_inpt_frm" id="user_inpt_frm">
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="rank">Area</label>
+                        <div class="col-sm-4 col-md-4 col-lg-5<?php if(isset($errors['area'])){echo ' has-error';}?>">
+                            <select name="area" id="area" class="form-control input-sm">
+                                <option value=""></option>
+                                <?php foreach($areas as $key=>$val):?>
+                                <option value="<?php echo $key;?>" <?php if($key==$area_id){echo 'selected';}?>><?php echo $val;?></option>
+                                <?php endforeach;?>
+                            </select>
+                            <?php if(isset($errors['area'])):?><span class="help-inline" for="area"><?php echo $errors['area'];?></span><?php endif;?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="building">Building</label>
+                        <div class="col-sm-4 col-md-4 col-lg-5<?php if(isset($errors['building'])){echo ' has-error';}?>">
+                            <input type="text" class="form-control input-sm" name="building" id="building" value="<?php echo $building_name;?>" placeholder="Building" autocomplete="off" />
+                            <?php if(isset($errors['building'])):?><span class="help-inline" for="building"><?php echo $errors['building'];?></span><?php endif;?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="router_no">Router</label>
+                        <div class="col-sm-4 col-md-4 col-lg-5<?php if(isset($errors['router_no'])){echo ' has-error';}?>">
+                            <select name="router_no" id="router_no" class="form-control input-sm">
+                                <option value=""></option>
+                                <?php foreach($mikrotik_routers as $key=>$val):?>
+                                <option value="<?php echo $key;?>" <?php if($key==$router_no){echo 'selected';}?>><?php echo $val['router_name'];?></option>
+                                <?php endforeach;?>
+                            </select>
+                            <?php if(isset($errors['router_no'])):?><span class="help-inline" for="router_no"><?php echo $errors['router_no'];?></span><?php endif;?>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <input type="hidden" name="<?php echo TOKEN_LEVEL;?>" id="<?php echo TOKEN_LEVEL;?>" value="<?php echo Token::generate(TOKEN_LEVEL);?>">
+                        <input type="submit" value="Update" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>			
+    </div>
+</div>

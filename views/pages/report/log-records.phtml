@@ -1,0 +1,305 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon">
+                    <i class="fa fa-th"></i>									
+                </span>
+                <h5>Search</h5>
+            </div>
+            <div class="widget-content nopadding">
+                <form action="log-records.php" method="get">
+                <div class="row" style="font-size:.8em; margin-bottom: 20px;">
+                    <div class="col-md-2">
+                        Username:
+                        <input type="text" id="user" name="user" value="<?php echo $user;?>" class="form-control input-sm" />
+                    </div>
+                    <div class="col-md-2">
+                        From:
+                        <input type="text" data-date="<?php echo $fr;?>" data-date-format="dd-mm-yyyy" id="fr" name="fr" value="<?php echo $fr;?>" class="datepicker form-control input-sm" />
+                    </div>
+                    <div class="col-md-2">
+                        To:
+                        <input type="text" data-date="<?php echo $to;?>" data-date-format="dd-mm-yyyy" id="to" name="to"  value="<?php echo $to;?>" class="datepicker form-control input-sm" />
+                    </div>
+                    <div class="col-md-4">
+                        Check for:<br>
+                        <select name="log" id="log">
+                            <!--<option value="">SELECT LOG</option>-->
+                            <?php foreach($check_logs as $key=>$val):?>
+                            <option value="<?php echo $key?>"<?php if($key==$log)echo ' selected';?>><?php echo $val;?></option>
+                            <?php endforeach;?>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        &nbsp;<br>
+                        <button class="btn btn-success btn-sm"><span class="icon"><i class="fa fa-search"></i> </span> Search</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <?php if($log==1):?>
+    <div class="col-xs-12">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon">
+                    <i class="fa fa-th"></i>                                    
+                </span>
+                <h5><?php 
+                $txt = LogHistory::subsNameRankProfileLink($user);
+                echo $check_logs[$log];
+                if(!empty($txt)){echo " of <i>$txt</i>";}
+                ?></h5>
+            </div>
+            <div class="widget-content nopadding">
+                <table class="table table-bordered table-striped table-hover" style="border-top:#229955 solid 1px;">
+                    <thead>
+                        <tr>
+                            <th>Package</th>
+                            <th>Connection from</th>
+                            <th>Connection to</th>
+                            <th>Status</th>
+                            <th>Details</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($log_histories as $h): ?>
+                            <tr>
+                                <td class=""><?php echo $h['package_name']; ?></td>
+                                <td><?php echo Date::niceDateTime5($h['connection_from']); ?></td>
+                                <td><?php echo Date::niceDateTime5($h['connection_to']); ?></td>
+                                <td class=""><?php echo LogHistory::$subscriber_status[$h['status_id']]; ?></td>
+                                <td class=""><?php echo LogHistory::commentDetails($h['comment'], $h['created_by'], $h['created_user_type']); ?></td>
+                                <td><?php echo Date::niceDateTime5($h['created_at']); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+                <?php echo $paginationStr;?>
+            </div>
+        </div>
+    </div>
+    <?php endif?>
+
+
+    <?php if($log==2):?>
+    <div class="col-xs-12">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon">
+                    <i class="fa fa-th"></i>                                    
+                </span>
+                <h5><?php 
+                $txt = LogHistory::subsNameRankProfileLink($user);
+                echo $check_logs[$log];
+                if(!empty($txt)){echo " of <i>$txt</i>";}
+                ?></h5>
+            </div>
+            <div class="widget-content nopadding">
+                <table class="table table-bordered table-striped table-hover" style="border-top:#229955 solid 1px;">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Debit (<?php echo CURRENCY;?>)</th>
+                            <th>Credit (<?php echo CURRENCY;?>)</th>
+                            <th>Balance (<?php echo CURRENCY;?>)</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($log_histories as $h): ?>
+                            <tr>
+                                <td><?php echo Date::niceDateTime($h['date']); ?></td>
+                                <td class="text-right"><?php echo Utility::thousandSeperator($h['debit']); ?></td>
+                                <td class="text-right"><?php echo Utility::thousandSeperator($h['credit']); ?></td>
+                                <td class="text-right"><?php echo Utility::thousandSeperator($h['balance']); ?></td>
+                                <td class=""><?php echo LogHistory::commentDetails($h['type'], $h['created_by'], $h['created_user_type']); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+                <?php echo $paginationStr;?>
+            </div>
+        </div>
+    </div>
+    <?php endif?>
+
+
+    <?php if($log==3):?>
+    <div class="col-xs-12">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon">
+                    <i class="fa fa-th"></i>                                    
+                </span>
+                <h5><?php 
+                $txt = LogHistory::subsNameRankProfileLink($user);
+                echo $check_logs[$log];
+                if(!empty($txt)){echo " of <i>$txt</i>";}
+                ?></h5>
+            </div>
+            <div class="widget-content nopadding">
+                <table class="table table-bordered table-striped table-hover" style="border-top:#229955 solid 1px;">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Package</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($log_histories as $h): ?>
+                            <tr>
+                                <td><?php echo Date::niceDateTime($h['date']); ?></td>
+                                <td class=""><?php echo $h['package']; ?></td>
+                                <td class=""><?php echo LogHistory::commentDetails($h['comment'], $h['uid_mod'], $h['user_type']); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+                <?php echo $paginationStr;?>
+            </div>
+        </div>
+    </div>
+    <?php endif?>
+
+
+    <?php if($log==4):?>
+    <div class="col-xs-12">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon">
+                    <i class="fa fa-th"></i>                                    
+                </span>
+                <h5><?php 
+                $txt = LogHistory::subsNameRankProfileLink($user);
+                echo $check_logs[$log];
+                if(!empty($txt)){echo " of <i>$txt</i>";}
+                ?></h5>
+            </div>
+            <div class="widget-content nopadding">
+                <table class="table table-bordered table-striped table-hover" style="border-top:#229955 solid 1px;">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Category</th>
+                            <th>Complementary Amount</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($log_histories as $h): ?>
+                            <tr>
+                                <td><?php echo Date::niceDateTime($h['date']); ?></td>
+                                <td class=""><?php echo $h['category']; ?></td>
+                                <td class="text-right"><?php echo $h['complementary_amount']; ?></td>
+                                <td class=""><?php echo LogHistory::commentDetails($h['comment'], $h['uid_mod'], $h['user_type']); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+                <?php echo $paginationStr;?>
+            </div>
+        </div>
+    </div>
+    <?php endif?>
+
+
+    <?php if($log==5):?>
+    <div class="col-xs-12">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon">
+                    <i class="fa fa-th"></i>                                    
+                </span>
+                <h5><?php 
+                $txt = LogHistory::subsNameRankProfileLink($user);
+                echo $check_logs[$log];
+                if(!empty($txt)){echo " of <i>$txt</i>";}
+                ?></h5>
+            </div>
+            <div class="widget-content nopadding">
+                <table class="table table-bordered table-striped table-hover" style="border-top:#229955 solid 1px;">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Area</th>
+                            <th>Building</th>
+                            <th>House</th>
+                            <th>Router</th>
+                            <th>Loal IP</th>
+                            <th>Remote IP</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($log_histories as $h): ?>
+                            <tr>
+                                <td><?php echo Date::niceDateTime5($h['date']); ?></td>
+                                <td class=""><?php echo $h['area']; ?></td>
+                                <td class=""><?php echo $h['building']; ?></td>
+                                <td class=""><?php echo $h['house_no']; ?></td>
+                                <td class=""><?php echo isset($mikrotik_routers[$h['router_no']]['router_name']) ? $mikrotik_routers[$h['router_no']]['router_name'] : '?'; ?></td>
+                                <td class=""><?php echo $h['local_ip']; ?></td>
+                                <td class=""><?php echo $h['remote_ip']; ?></td>
+                                <td class=""><?php echo LogHistory::commentDetails($h['comment'], $h['uid_mod'], $h['user_type']); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+                <?php echo $paginationStr;?>
+            </div>
+        </div>
+    </div>
+    <?php endif?>
+
+
+    <?php if($log==6):?>
+    <div class="col-xs-12">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon">
+                    <i class="fa fa-th"></i>                                    
+                </span>
+                <h5><?php 
+                $txt = LogHistory::subsNameRankProfileLink($user);
+                echo $check_logs[$log];
+                if(!empty($txt)){echo " of <i>$txt</i>";}
+                ?></h5>
+            </div>
+            <div class="widget-content nopadding">
+                <table class="table table-bordered table-striped table-hover" style="border-top:#229955 solid 1px;">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Username</th>
+                            <th>Password</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($log_histories as $h): ?>
+                            <tr>
+                                <td><?php echo Date::niceDateTime($h['date']); ?></td>
+                                <td class=""><?php echo $h['username']; ?></td>
+                                <td class=""><?php echo $h['password']; ?></td>
+                                <td class=""><?php echo LogHistory::commentDetails($h['comment'], $h['uid_mod'], $h['user_type']); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+                <?php echo $paginationStr;?>
+            </div>
+        </div>
+    </div>
+    <?php endif?>
+
+</div>
+
+
+<?php //Utility::pa($log_histories);?>

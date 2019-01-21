@@ -1,0 +1,38 @@
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon">
+                    <i class="fa fa-align-justify"></i>									
+                </span>
+                <h5><?php echo $pageTitle;?></h5>
+                <span title="" class="label label-info tip-left" style="padding:5px;" data-original-title="Back to Survey List Page">
+                    <a href="index.php" style="color: white;">Survey List</a>
+                </span>
+            </div>
+            <div class="widget-content nopadding">
+                <form class="form-horizontal" method="post" action="">
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="title">Title</label>
+                        <div class="col-sm-6 col-md-6 col-lg-6<?php if(isset($errors['title'])){echo ' has-error';}?>">
+                            <input type="text" class="form-control input-sm" name="title" id="building" value="<?php echo $title;?>" placeholder="Enter Title" autocomplete="off" />
+                            <?php if(isset($errors['title'])):?><span class="help-inline" for="title"><?php echo $errors['title'];?></span><?php endif;?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="description">Description<br>(optional)</label>
+                        <div class="col-sm-6 col-md-6 col-lg-6<?php if(isset($errors['description'])){echo ' has-error';}?>">
+                            <textarea class="form-control input-sm" name="description" id="description" placeholder="Enter Description"><?php echo $description;?></textarea>
+                            <?php if(isset($errors['description'])):?><span class="help-inline" for="description"><?php echo $errors['description'];?></span><?php endif;?>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <input type="hidden" name="<?php echo TOKEN_LEVEL;?>" id="<?php echo TOKEN_LEVEL;?>" value="<?php echo Token::generate(TOKEN_LEVEL);?>">
+                        <input type="submit" value="Add" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>			
+    </div>
+</div>

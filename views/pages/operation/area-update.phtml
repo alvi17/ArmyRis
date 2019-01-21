@@ -1,0 +1,41 @@
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon">
+                    <i class="fa fa-align-justify"></i>									
+                </span>
+                <h5>Update Area</h5>
+                <span title="" class="label label-info tip-left" style="padding:5px;" data-original-title="List Areas">
+                    <a href="area.php" style="color: white;">List Areas</a></a>
+                </span>
+            </div>
+            <div class="widget-content nopadding">
+                <form class="form-horizontal" method="post" action="area-update.php?id=<?php echo $id;?>" name="area_add_frm" id="area_add_frm">
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="name">Area Name</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10<?php if(isset($errors['name'])){echo ' has-error';}?>">
+                            <input type="text" class="form-control input-sm" name="name" id="code" value="<?php echo $name;?>" placeholder="Name" autocomplete="off" />
+                            <?php if(isset($errors['name'])):?><span class="help-inline" for="name"><?php echo $errors['name'];?></span><?php endif;?>
+                        </div>
+                    </div>
+                    <?php /*?>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="status">Status</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10<?php if(isset($errors['name'])){echo ' has-error';}?>">
+                            <label><input type="radio" name="status"<?php if($status==1) echo ' checked';?>/> Active</label>
+                            <label><input type="radio" name="status"<?php if($status==0) echo ' checked';?> /> Delete</label>
+                            <?php if(isset($errors['name'])):?><span class="help-inline" for="name"><?php echo $errors['name'];?></span><?php endif;?>
+                        </div>
+                    </div>
+                    <?php */?>
+                    <div class="form-actions">
+                        <input type="hidden" name="<?php echo TOKEN_LEV;?>" id="<?php echo TOKEN_LEVEL;?>" value="<EL?php echo Token::generate(TOKEN_LEVEL);?>">
+                        <input type="submit" value="Update" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>			
+    </div>
+</div>

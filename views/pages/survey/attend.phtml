@@ -1,0 +1,48 @@
+<style>
+    textarea, ul, .instrc{margin-left: 30px;}
+    textarea{width:75%;}
+    .instrc{font-size: .9em; color: #9413BF;}
+</style>
+
+<div class="row">
+    <div class="col-xs-12">
+        <h3><?php echo $info['name'];?></h3>
+        <?php echo $info['desc'];?>
+        <p>
+        Total questions: <span class="badge badge-purple"><?php echo count($questions);?></span>
+        </p>
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <form class="form-horizontal" method="post" action="">
+        <?php $sl = 0;?>
+        <?php foreach($questions as $id=>$val):?>
+            <b><?php echo ++$sl .'. '. $val['text'];?></b><br>
+            <i class="instrc"><?php echo Survey::$instruct_types[$val['type']];?></i><br>
+
+            <?php if($val['type']=='text'){?>
+            <textarea name="resp_<?php echo $id;?>" title="Write here"><?php //echo $val['text'];?></textarea>
+            <?php }elseif($val['type']=='single_choice'){
+                ?><ul class="list-unstyled"><?php
+                foreach($val['options'] as $op_k=>$op_v){
+                    ?><li><label class="fnt-nrml"><input type="radio" name="resp_<?php echo $id;?>" value="<?php echo $op_k;?>"> <?php echo $op_v;?></label></li><?php
+                }?></ul>
+            <?php }elseif($val['type']=='multi_choice'){
+                ?><ul class="list-unstyled"><?php
+                foreach($val['options'] as $op_k=>$op_v){
+                    ?><li><label class="fnt-nrml"><input type="checkbox" name="resp_<?php echo $id;?>[]" value="<?php echo $op_k;?>"> <?php echo $op_v;?></label></li><?php
+                }?></ul>
+            <?php }?>
+            <hr />
+        <?php endforeach;?>
+        
+        <div class="form-actions">
+            <input type="hidden" name="<?php echo TOKEN_LEVEL;?>" id="<?php echo TOKEN_LEVEL;?>" value="<?php echo Token::generate(TOKEN_LEVEL);?>">
+            <input type="submit" value="Submit" class="btn btn-primary">
+        </div>
+        </form>
+    </div>
+</div>  

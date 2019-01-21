@@ -1,0 +1,67 @@
+<style>
+    table a{color:#000;}
+</style>
+<div class="col-xs2">
+    <div class="widget-box">
+        <div class="widget-title">
+            <span class="icon">
+                <i class="fa fa-th-list"></i>
+            </span>
+            <h5>Search</h5>
+            <span title="" class="label label-info tip-left" style="padding:5px;" data-original-title="Add New Complaint">
+                <a href="add.php" style="color: white;">Add Complaint</a>
+            </span>
+        </div>
+        <div class="widget-content" style="font-size: .9em; overflow: hidden;">
+            
+            
+            
+<form method="post" action="">
+        <div class="col-md2" style="font-size: .9em;">
+		<label for="date_from">
+			<span>Date from</span><br>
+			<input  type="text" class="datepicker" id="date_from" name="date_from" value="<?php echo $date_from;?>" style="border: solid 1px #7A7A7A; color:#000;" />
+		</label>
+		<label for="date_to">
+			<span>Date to</span><br>
+			<input  type="text" class="datepicker" id="date_to" name="date_to" value="<?php echo $date_to;?>" style="border: solid 1px #7A7A7A; color:#000;" />
+		</label>
+        <label>
+            <br>
+            <button type="submit" name="list" class="btn-sm"><span class="glyphicon glyphicon-search"></span> Search</button>
+        </label>
+        </div>
+    
+    <!--</div>-->
+</form>
+
+<div class="widget-box col-xs-12 col-sm-3">
+	<div class="widget-title">
+		<h5>Summary</h5>
+	</div>
+	<div class="widget-content nopadding">
+		<table class="table table-striped table-bordered">
+			<tbody>
+			<?php 
+			$tot = 0;
+			//$result = [];
+			foreach($data as $key=>$val){?>
+			<tr>
+				<td class="taskDesc"><a href="<?php echo BASE_URL.'/complaint/general-report.php?support_reason='.$key.'&date_from='.$date_from.'&date_to='.$date_to.'&page=1';?>"><?php echo $val['name'];?></a></td>
+				<td class="taskStatus"><span class="pending pull-right">
+				<a href="<?php echo BASE_URL.'/complaint/general-report.php?support_reason='.$key.'&date_from='.$date_from.'&date_to='.$date_to.'&page=1';?>"><?php echo Utility::commaSeperator($val['tot']);?></a></span></td>
+			</tr>
+			<?php 
+			$tot += $val['tot'];
+			}?>
+			<tr>
+				<td class="taskDesc"><a href="<?php echo BASE_URL.'/complaint/general-report.php?date_from='.$date_from.'&date_to='.$date_to.'&page=1';?>">Total</a></td>
+				<td class="taskStatus"><span class="pending pull-right">
+				<a href="<?php echo BASE_URL.'/complaint/general-report.php?date_from='.$date_from.'&date_to='.$date_to.'&page=1';?>"><?php echo Utility::commaSeperator($tot);?></a></span></td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<?php //Utility::pr($result); exit;?>

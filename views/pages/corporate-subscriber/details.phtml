@@ -1,0 +1,81 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon">
+                    <i class="fa fa-align-justify"></i>									
+                </span>
+                <h5>Corporate Subscriber Details</h5>
+                <span title="" class="label label-info tip-left" style="padding:5px;" data-original-title="Edit Corporate Subscriber Information">
+                    <a href="edit.php?id=<?php echo $id;?>" style="color: white;">Edit</a>
+                </span>
+            </div>
+            <div class="widget-content nopadding">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label">Corporate Name</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10">
+                            <?php echo $data['firstname'];?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label">Address</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10">
+                            <?php echo $data['address'];?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label">Official Mobile</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10">
+                            <?php echo $data['official_mobile'];?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label">Personal Mobile</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <?php echo $data['personal_mobile'];?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label">Residential Phone</label>
+                        <div class="col-sm-4 col-md-4 col-lg-5"> 
+                            <?php echo $data['residential_phone'];?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label">Email</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10">
+                            <?php echo $data['email'];?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label">Connection Package</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10">
+                            <?php echo $data['corporate_package'];?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label">Connection Price</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10">
+                            <?php echo Utility::commaSeperator($data['corporate_package_price']);?> <?php echo CURRENCY;?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label">Status</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10">
+                            <?php echo isset($subscriber_statuses[$data['status_id']]) ? $subscriber_statuses[$data['status_id']]: ''; ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label">Remarks</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10"><?php echo $data['remarks'];?></div>
+                    </div>
+                </form>
+            </div>
+        </div>			
+    </div>
+</div>

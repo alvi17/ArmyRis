@@ -1,0 +1,271 @@
+<style>
+.widget-title{
+	background: #d0d6c7 !important;
+}
+.widget-title h5{
+	text-shadow: none !important;
+	color: #565656 !important;
+}
+.widget-content table td{ font-size:.9em;}
+.taskStatus span, .taskStatus span a{color: #d9534f !important; display:block;}
+.taskDesc a{color: #333 !important; display:block;}
+</style>
+
+
+<div class="row">
+	<div class="col-xs-12 col-sm-3">
+		<div class="widget-box">
+			<div class="widget-title">
+				<h5>Revenue</h5>
+			</div>
+			<div class="widget-content nopadding">
+				<table class="table table-striped table-bordered">
+                    <tbody>
+                        <tr>
+                            <td class="taskDesc"><a href="<?php echo BASE_URL.'/report/revenue.php?date_from='.date('d-m-Y', strtotime($today)).'&date_to='.date('d-m-Y', strtotime($today));?>">Today</a></td>
+                            <td class="taskStatus"><a href="<?php echo BASE_URL.'/report/revenue.php?date_from='.date('d-m-Y', strtotime($today)).'&date_to='.date('d-m-Y', strtotime($today));?>"><span class="pending pull-right"><?php echo Utility::commaSeperator($revenue_today['total']);?> <?php echo CURRENCY;?></span></a></td>
+                        </tr>
+                        <tr>
+                            <td class="taskDesc"><a href="<?php echo BASE_URL.'/report/revenue.php?date_from='.date('d-m-Y', strtotime($firstDateCurrWeek)).'&date_to='.date('d-m-Y', strtotime($lastDateCurrWeek));?>">This Week</a></td>
+                            <td class="taskStatus"><a href="<?php echo BASE_URL.'/report/revenue.php?date_from='.date('d-m-Y', strtotime($firstDateCurrWeek)).'&date_to='.date('d-m-Y', strtotime($lastDateCurrWeek));?>"><span class="pending pull-right"><?php echo Utility::commaSeperator($revenue_this_week['total']);?> <?php echo CURRENCY;?></span></a></td>
+                        </tr>
+                        <tr>
+                            <td class="taskDesc"><a href="<?php echo BASE_URL.'/report/revenue.php?date_from='.date('d-m-Y', strtotime($firstDateCurrMonth)).'&date_to='.date('d-m-Y', strtotime($lastDateCurrMonth));?>">This Month</a></td>
+                            <td class="taskStatus"><a href="<?php echo BASE_URL.'/report/revenue.php?date_from='.date('d-m-Y', strtotime($firstDateCurrMonth)).'&date_to='.date('d-m-Y', strtotime($lastDateCurrMonth));?>"><span class="pending pull-right"><?php echo Utility::commaSeperator($revenue_this_month['total']);?> <?php echo CURRENCY;?></span></a></td>
+                        </tr>
+                        <tr>
+                            <td class="taskDesc"><a href="<?php echo BASE_URL.'/report/revenue.php?date_from='.date('d-m-Y', strtotime($firstDateCurrYear)).'&date_to='.date('d-m-Y', strtotime($lastDateCurrYear));?>">This Year</a></td>
+                            <td class="taskStatus"><a href="<?php echo BASE_URL.'/report/revenue.php?date_from='.date('d-m-Y', strtotime($firstDateCurrYear)).'&date_to='.date('d-m-Y', strtotime($lastDateCurrYear));?>"><span class="pending pull-right"><?php echo Utility::commaSeperator($revenue_this_year['total']);?> <?php echo CURRENCY;?></span></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+			</div>
+		</div>
+		<div class="widget-box">
+			<div class="widget-title">
+				<h5>Complaints by Status <br><span style="font-style: italic; font-size: .75em;">(This Month)</span></h5>
+			</div>
+			<div class="widget-content nopadding">
+				<table class="table table-striped table-bordered">
+                    <tbody>
+                    	<tr>
+                            <td class="taskDesc"><a href="<?php echo BASE_URL.'/complaint/general-report.php?dt_md=strict&status=1';?>">Informed</a></td>
+                            <td class="taskStatus"><span class="pending pull-right">
+							<a href="<?php echo BASE_URL.'/complaint/general-report.php?dt_md=strict&status=1&date_from='.$dt_from.'&date_to='.$dt_to;?>"><?php echo Utility::commaSeperator($ComplaintByStatuses['informed']);?></a></span></td>
+                        </tr>
+                    	<tr>
+                            <td class="taskDesc"><a href="<?php echo BASE_URL.'/complaint/general-report.php?dt_md=strict&status=2';?>">In Progress</a></td>
+                            <td class="taskStatus"><span class="pending pull-right"><a href="<?php echo BASE_URL.'/complaint/general-report.php?dt_md=strict&status=2&date_from='.$dt_from.'&date_to='.$dt_to;?>"><?php echo Utility::commaSeperator($ComplaintByStatuses['in_progress']);?></a></span></td>
+                        </tr>
+                    	<tr>
+                            <td class="taskDesc"><a href="<?php echo BASE_URL.'/complaint/general-report.php?dt_md=strict&status=3';?>">On Hold</a></td>
+                            <td class="taskStatus"><span class="pending pull-right"><a href="<?php echo BASE_URL.'/complaint/general-report.php?dt_md=strict&status=3&date_from='.$dt_from.'&date_to='.$dt_to;?>"><?php echo Utility::commaSeperator($ComplaintByStatuses['on_hold']);?></a></span></td>
+                        </tr>
+                    	<tr>
+                            <td class="taskDesc"><a href="<?php echo BASE_URL.'/complaint/general-report.php?dt_md=strict&status=4';?>">Pending</a></td>
+                            <td class="taskStatus"><span class="pending pull-right"><a href="<?php echo BASE_URL.'/complaint/general-report.php?dt_md=strict&status=4&date_from='.$dt_from.'&date_to='.$dt_to;?>"><?php echo Utility::commaSeperator($ComplaintByStatuses['pending']);?></a></span></td>
+                        </tr>
+                    	<tr>
+                            <td class="taskDesc"><a href="<?php echo BASE_URL.'/complaint/general-report.php?dt_md=strict&status=5';?>">Completed</a></td>
+                            <td class="taskStatus"><span class="pending pull-right"><a href="<?php echo BASE_URL.'/complaint/general-report.php?dt_md=strict&status=5&date_from='.$dt_from.'&date_to='.$dt_to;?>"><?php echo Utility::commaSeperator($ComplaintByStatuses['completed']);?></a></span></td>
+                        </tr>
+                    	<tr>
+                            <td class="taskDesc"><a href="<?php echo BASE_URL.'/complaint/general-report.php?dt_md=strict&status=6';?>">Cancled</a></td>
+                            <td class="taskStatus"><span class="pending pull-right"><a href="<?php echo BASE_URL.'/complaint/general-report.php?dt_md=strict&status=6&date_from='.$dt_from.'&date_to='.$dt_to;?>"><?php echo Utility::commaSeperator($ComplaintByStatuses['cancled']);?></a></span></td>
+                        </tr>
+                    	<tr>
+                            <td class="taskDesc"><a href="<?php echo BASE_URL.'/complaint/general-report.php?dt_md=strict';?>">Total</a></td>
+                            <td class="taskStatus"><span class="pending pull-right"><a href="<?php echo BASE_URL.'/complaint/general-report.php?dt_md=strict&date_from='.$dt_from.'&date_to='.$dt_to;?>"><?php echo Utility::commaSeperator($ComplaintByStatuses['total']);?></a></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+			</div>
+		</div>
+	</div>
+	<div class="col-xs-12 col-sm-3">
+		<div class="widget-box">
+			<div class="widget-title">
+				<h5>Top Complainant <br><span style="font-style: italic; font-size: .75em;">(This Month)</span></h5>
+			</div>
+			<div class="widget-content nopadding">
+				<table class="table table-striped table-bordered">
+                    <tbody>
+                    <?php foreach($topComplainants as $tc):?>
+                    	<tr>
+                            <td class="taskDesc"><a href="<?php echo BASE_URL.'/complaint/general-report.php?dt_md=strict&search='.$tc['ba_no'].'&rank='.$tc['rank_id'].'&date_from='.$dt_from.'&date_to='.$dt_to;?>"><?php echo trim($tc['rank'].' '.$tc['firstname'].' '.$tc['lastname']);?></a></td>
+                            <td class="taskStatus"><a href="<?php echo BASE_URL.'/complaint/general-report.php?dt_md=strict&search='.$tc['ba_no'].'&rank='.$tc['rank_id'].'&date_from='.$dt_from.'&date_to='.$dt_to;?>"><span class="pending pull-right"><?php echo Utility::commaSeperator($tc['total']);?></span></a></td>
+                        </tr>
+                    <?php endforeach;?>
+                    </tbody>
+                </table>
+			</div>
+		</div>
+	</div>
+	
+	<div class="col-xs-12 col-sm-3">
+		<div class="widget-box">
+			<div class="widget-title">
+				<h5>Subscribers by Status</h5>
+			</div>
+			<div class="widget-content nopadding">
+				<table class="table table-striped table-bordered">
+                    <tbody>
+                        <tr>
+                            <td class="taskDesc"><a href="<?php echo BASE_URL.'/subscriber/index.php?sts=1';?>">Active</a></td>
+                            <td class="taskStatus "><a href="<?php echo BASE_URL.'/subscriber/index.php?sts=1';?>"><span class="pending pull-right"><?php echo Utility::commaSeperator($SubscribersByStatus['active']);?></span></a></td>
+                        </tr>
+                        <tr>
+                            <td class="taskDesc"><a href="<?php echo BASE_URL.'/subscriber/index.php?sts=0';?>">Suspended</a></td>
+                            <td class="taskStatus"><a href="<?php echo BASE_URL.'/subscriber/index.php?sts=0';?>"><span class="pending pull-right"><?php echo Utility::commaSeperator($SubscribersByStatus['suspended']);?></span></a></td>
+                        </tr>
+                        <tr>
+                            <td class="taskDesc"><a href="<?php echo BASE_URL.'/subscriber/index.php';?>">Total</a></td>
+                            <td class="taskStatus"><a href="<?php echo BASE_URL.'/subscriber/index.php';?>"><span class="pending pull-right"><?php echo Utility::commaSeperator($SubscribersByStatus['total']);?></span></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+			</div>
+		</div>
+		<div class="widget-box">
+			<div class="widget-title">
+				<h5>Subscribers by Category</h5>
+			</div>
+			<div class="widget-content nopadding">
+				<table class="table table-striped table-bordered">
+                    <tbody>
+                        <tr>
+                            <td class="taskDesc"><a href="<?php echo BASE_URL.'/subscriber/index.php?cat=Paid';?>">Paid</a></td>
+                            <td class="taskStatus"><a href="<?php echo BASE_URL.'/subscriber/index.php?cat=Paid';?>"><span class="pending pull-right"><?php echo Utility::commaSeperator($SubscribersByCategory['paid']);?></span></a></td>
+                        </tr>
+                        <tr>
+                            <td class="taskDesc"><a href="<?php echo BASE_URL.'/subscriber/index.php?cat=Complementary';?>">Complementary</a></td>
+                            <td class="taskStatus"><a href="<?php echo BASE_URL.'/subscriber/index.php?cat=Complementary';?>"><span class="pending pull-right"><?php echo Utility::commaSeperator($SubscribersByCategory['complementary']);?></span></a></td>
+                        </tr>
+                        <tr>
+                            <td class="taskDesc"><a href="<?php echo BASE_URL.'/subscriber/index.php?cat=Free';?>">Free</a></td>
+                            <td class="taskStatus "><a href="<?php echo BASE_URL.'/subscriber/index.php?cat=Free';?>"><span class="pending pull-right"><?php echo Utility::commaSeperator($SubscribersByCategory['free']);?></span></a></td>
+                        </tr>
+                        <tr>
+                            <td class="taskDesc"><a href="<?php echo BASE_URL.'/subscriber/index.php';?>">Total</a></td>
+                            <td class="taskStatus "><a href="<?php echo BASE_URL.'/subscriber/index.php';?>"><span class="pending pull-right"><?php echo Utility::commaSeperator($SubscribersByCategory['total']);?></span></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+			</div>
+		</div>
+
+		<div class="widget-box">
+			<div class="widget-title">
+				<h5>Corporate Subscribers</h5>
+			</div>
+			<div class="widget-content nopadding">
+				<table class="table table-striped table-bordered">
+                    <tbody>
+                        <tr>
+                            <td class="taskDesc"><a href="<?php echo BASE_URL.'/corporate-subscriber/list.php';?>">Total</a></td>
+                            <td class="taskStatus"><a href="<?php echo BASE_URL.'/corporate-subscriber/list.php';?>"><span class="pending pull-right"><?php echo Utility::commaSeperator($CorporateSubscribers['total']);?></span></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+			</div>
+		</div>
+	</div>
+	
+	<div class="col-xs-12 col-sm-3">
+		<div class="widget-box">
+			<div class="widget-title">
+				<h5>Subscribers by Package</h5>
+			</div>
+			<div class="widget-content nopadding">
+				<table class="table table-striped table-bordered">
+                    <tbody>
+                    <?php foreach($SubscribersByPackage as $sp):?>
+                    	<tr>
+                            <td class="taskDesc"><a href="<?php echo BASE_URL.'/subscriber/index.php?pkg='.$sp['package_id'];?>"><?php echo $sp['package'];?></a></td>
+                            <td class="taskStatus"><a href="<?php echo BASE_URL.'/subscriber/index.php?pkg='.$sp['package_id'];?>"><span class="pending pull-right"><?php echo Utility::commaSeperator($sp['total']);?></span></a></td>
+                        </tr>
+                    <?php endforeach;?>
+						<tr>
+							<td class="taskDesc"><a href="<?php echo BASE_URL.'/subscriber/index.php';?>">Total</a></td>
+							<td class="taskStatus"><a href="<?php echo BASE_URL.'/subscriber/index.php';?>"><span class="pending pull-right"><?php echo Utility::commaSeperator($SubscribersByPackageTotal);?></span></a></td>
+						</tr>
+                    </tbody>
+                </table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-12 col-sm-4">
+		<div class="widget-box">
+			<div class="widget-title">
+				<h5>Complaints by Types <br><span style="font-style: italic; font-size: .75em;">(This Month)</span></h5>
+			</div>
+			<div class="widget-content nopadding">
+				<table class="table table-striped table-bordered">
+                    <tbody>
+                    <?php foreach($ComplaintByTypes as $sp):?>
+                    	<tr>
+                            <td class="taskDesc"><a href="<?php echo BASE_URL.'/complaint/general-report.php?dt_md=strict&problem_type='.$sp['pb_type'].'&date_from='.$dt_from.'&date_to='.$dt_to;?>"><?php echo $sp['problem'];?></a></td>
+                            <td class="taskStatus"><a href="<?php echo BASE_URL.'/complaint/general-report.php?dt_md=strict&problem_type='.$sp['pb_type'].'&date_from='.$dt_from.'&date_to='.$dt_to;?>"><span class="pending pull-right"><?php echo Utility::commaSeperator($sp['total']);?></span></a></td>
+                        </tr>
+                    <?php endforeach;?>
+                    	<tr>
+                            <td class="taskDesc"><a href="<?php echo BASE_URL.'/complaint/general-report.php?dt_md=strict'.'&date_from='.$dt_from.'&date_to='.$dt_to;?>">Total</a></td>
+                            <td class="taskStatus"><a href="<?php echo BASE_URL.'/complaint/general-report.php?dt_md=strict'.'&date_from='.$dt_from.'&date_to='.$dt_to;?>"><span class="pending pull-right"><?php echo Utility::commaSeperator($ComplaintByTypesTotal);?></span></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+			</div>
+		</div>
+	</div>
+	
+	<div class="col-xs-12 col-sm-4">
+		<div class="widget-box">
+			<div class="widget-title">
+				<h5>Complaints by Support <br><span style="font-style: italic; font-size: .75em;">(This Month)</span></h5>
+			</div>
+			<div class="widget-content nopadding">
+				<table class="table table-striped table-bordered">
+                    <tbody>
+                    <?php foreach($ComplaintBySupportTypes as $sp):?>
+                    	<tr>
+                            <td class="taskDesc"><a href="<?php echo BASE_URL.'/complaint/general-report.php?dt_md=strict&support_reason='.$sp['support_reason'].'&date_from='.$dt_from.'&date_to='.$dt_to;?>"><?php echo $sp['support'];?></a></td>
+                            <td class="taskStatus"><a href="<?php echo BASE_URL.'/complaint/general-report.php?dt_md=strict&support_reason='.$sp['support_reason'].'&date_from='.$dt_from.'&date_to='.$dt_to;?>"><span class="pending pull-right"><?php echo Utility::commaSeperator($sp['total']);?></span></a></td>
+                        </tr>
+                    <?php endforeach;?>
+                    	<tr>
+                            <td class="taskDesc"><a href="<?php echo BASE_URL.'/complaint/general-report.php?dt_md=strict'.'&date_from='.$dt_from.'&date_to='.$dt_to;?>">Total</a></td>
+                            <td class="taskStatus"><a href="<?php echo BASE_URL.'/complaint/general-report.php?dt_md=strict'.'&date_from='.$dt_from.'&date_to='.$dt_to;?>"><span class="pending pull-right"><?php echo Utility::commaSeperator($ComplaintBySupportTypesTotal);?></span></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+			</div>
+		</div>
+	</div>
+	
+	<div class="col-xs-12 col-sm-3">
+		<div class="widget-box">
+			<div class="widget-title">
+				<h5>Subscribers by Rank</h5>
+			</div>
+			<div class="widget-content nopadding">
+				<table class="table table-striped table-bordered">
+                    <tbody>
+                    <?php foreach($SubscribersByRank as $sp):?>
+                    	<tr>
+                            <td class="taskDesc"><a href="<?php echo BASE_URL.'/subscriber/index.php?rank='.$sp['rank_id'];?>"><?php echo $sp['rank'];?></a></td>
+                            <td class="taskStatus"><a href="<?php echo BASE_URL.'/subscriber/index.php?rank='.$sp['rank_id'];?>"><span class="pending pull-right"><?php echo Utility::commaSeperator($sp['total']);?></span></a></td>
+                        </tr>
+                    <?php endforeach;?>
+                    	<tr>
+                            <td class="taskDesc"><a href="<?php echo BASE_URL.'/subscriber/index.php';?>">Total</a></td>
+                            <td class="taskStatus"><a href="<?php echo BASE_URL.'/subscriber/index.php';?>"><span class="pending pull-right"><?php echo Utility::commaSeperator($SubscribersByRankTotal);?></span></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+			</div>
+		</div>
+	</div>
+</div>

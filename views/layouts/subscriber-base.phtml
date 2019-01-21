@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>ArmyRIS | <?php echo $pageTitle;?> | Residential Internet Service, AITSO, Dhaka Cantonment</title>
+        <link rel="shortcut icon" href="<?php echo BASE_URL?>/img/aitso.jpg" type="image/png" />
+		<meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="<?php echo BASE_URL;?>/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="<?php echo BASE_URL;?>/css/font-awesome.css" />
+        <link rel="stylesheet" href="<?php echo BASE_URL;?>/css/colorpicker.css" />
+        <link rel="stylesheet" href="<?php echo BASE_URL;?>/css/datepicker.css" />
+		<link rel="stylesheet" href="<?php echo BASE_URL;?>/css/icheck/flat/blue.css" />
+		<link rel="stylesheet" href="<?php echo BASE_URL;?>/css/select2.css" />
+		<link rel="stylesheet" href="<?php echo BASE_URL;?>/css/jquery-ui.css" />
+		<link rel="stylesheet" href="<?php echo BASE_URL;?>/css/unicorn.css" />
+        <link rel="stylesheet" href="<?php echo BASE_URL;?>/css/style.css" />
+        
+		<!--[if lt IE 9]>
+		<script type="text/javascript" src="<?php echo BASE_URL;?>/js/respond.min.js"></script>
+		<![endif]-->
+        <?php if(isset($moreCss)):?>
+            <?php foreach($moreCss as $css):?>
+            <link rel="stylesheet" href="<?php echo BASE_URL.'/'.$css;?>" />
+            <?php endforeach;?>
+        <?php endif;?>
+            
+        <script src="<?php echo BASE_URL;?>/js/jquery.min.js"></script>
+        <script src="<?php echo BASE_URL;?>/js/jquery-ui.custom.js"></script>
+        <script src="<?php echo BASE_URL;?>/js/bootstrap.min.js"></script>
+        <script src="<?php echo BASE_URL;?>/js/jquery.nicescroll.min.js"></script>
+        <?php /*?>
+         <script src="<?php echo BASE_URL;?>/js/jquery.dataTables.min.js"></script>
+        <script src="<?php echo BASE_URL;?>/js/select2.min.js"></script>
+         <?php */?>
+        <script src="<?php echo BASE_URL;?>/js/unicorn.js"></script>
+        <script src="<?php echo BASE_URL;?>/js/unicorn.tables.js"></script>
+        <script src="<?php echo BASE_URL;?>/js/jquery.icheck.min.js"></script>
+        <script src="<?php echo BASE_URL;?>/js/jquery.validate.js"></script>
+
+        <?php if(isset($moreJs)):?>
+            <?php foreach($moreJs as $js):?>
+            <script src="<?php echo BASE_URL.'/'.$js;?>"></script>
+            <?php endforeach;?>
+        <?php endif;?>
+			
+	</head>	<body data-color="grey" class="flat"><div id="wrapper">
+		<div id="header">
+			<h1><a href="<?php echo BASE_URL;?>/">ARMY RIS</a></h1>	
+		</div>
+		
+		<?php require BASE_DIRECTORY.'/views/layouts/admin-top-menu.phtml';?>
+        <?php require BASE_DIRECTORY.'/views/layouts/admin-left-menu.phtml';?>
+		
+		
+		
+        <div id="content">
+            <?php //require BASE_DIRECTORY.'/views/layouts/admin-breadcrumb-message.phtml';?>
+            <?php require BASE_DIRECTORY.'/views/pages/'.$pageContent.'.phtml';?>
+
+		</div>
+        <?php require BASE_DIRECTORY.'/views/layouts/admin-footer.phtml';?>
+
+        
+	</body>
+</html>

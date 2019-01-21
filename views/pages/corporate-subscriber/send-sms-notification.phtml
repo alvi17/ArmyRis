@@ -1,0 +1,70 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon">
+                    <i class="fa fa-th"></i>									
+                </span>
+                <h5><?php echo $pageTitle;?></h5>
+            </div>
+            <div class="widget-content nopadding">
+                <form action="" method="post">
+                <div class="row" style="font-size:.8em; margin-bottom: 20px;">
+                    <div class="col-md-12">
+                        <?php foreach($subscribers as $key=>$val):?>
+                        <div class="col-md-4">
+                            <label class="checkbox-inline">
+                              <input type="checkbox" name="c_subs_ids[]" value="<?php echo $key;?>" <?php if(in_array($key, $c_subs_ids)){echo ' checked';}?>> <?php echo $val['name'] .' ('.$val['mobile'].')';?>
+                            </label>
+                        </div>
+                        <?php endforeach;?>
+                        <?php if(isset($errors['c_subs_ids'])):?><span class="help-inline" for="c_subs_ids" style="color:red;"><br><?php echo $errors['c_subs_ids'];?></span><?php endif;?>
+                    </div>
+                </div>
+                <div class="row" style="">
+                    <div class="col-md-10">SMS<br>
+                    <textarea name="sms_text" id="sms_text" title="Write SMS" style="width: 90%;"><?php echo $sms_text;?></textarea>
+                    <?php if(isset($errors['sms_text'])):?><span class="help-inline" for="sms_text" style="color:red;"><br><?php echo $errors['sms_text'];?></span><?php endif;?>
+                    </div>
+                </div>
+                <div class="row" style="">
+                    <div class="col-md-2">
+                        <br />
+                        <button class="btn btn-success btn-sm">Submit</button>
+                    </div>
+                </div>
+                </form>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+$(function() {
+    $('#area').on('change', function() {
+        $.ajax({
+            type : 'POST',
+            url  : '<?php echo BASE_URL;?>/modules/ajx/dd-buildings-by-area-wth-active-subscriber-count.php',
+            data : {id: $(this).val()},
+            success : function (msg) {
+                var [a, b] = msg.split('##');
+                $('#building').html(a);
+                $('#tot_act_sbs').html(b);
+            }
+        });
+    });
+    
+    $('#building').on('change', function() {
+        $.ajax({
+            type : 'POST',
+            url  : '<?php echo BASE_URL;?>/modules/ajx/dd-active-subscriber-count-by-building.php',
+            data : {id: $(this).val()},
+            success : function (msg) {
+                $('#tot_act_sbs').html(msg);
+            }
+        });
+    });
+});
+</script>

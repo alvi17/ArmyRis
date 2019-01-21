@@ -1,0 +1,77 @@
+<div class="row">
+    <div class="col-xs-10">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon">
+                    <i class="fa fa-th"></i>									
+                </span>
+                <h5><?php echo $pageTitle;?></h5>
+                <span title="" class="label label-info tip-left" style="padding:5px;" data-original-title="Add New Building">
+                    <a href="building-add.php" style="color: white;">Add</a>
+                </span>
+            </div>
+            <div class="widget-content nopadding">
+                <form action="building.php" method="get">
+                <div class="row" style="font-size:.8em; margin-bottom: 20px;">
+                    <div class="col-md-3">
+                        Area:
+                        <select name="area" id="area" class="form-control input-sm">
+                            <option value=""></option>
+                            <?php foreach($areas as $key=>$val):?>
+                            <option value="<?php echo $key;?>" <?php if($key==$area){echo 'selected';}?>><?php echo $val;?></option>
+                            <?php endforeach;?>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        Router:
+                        <select name="router" id="router" class="form-control input-sm">
+                            <option value=""></option>
+                            <?php foreach($mikrotik_routers as $key=>$val):?>
+                            <option value="<?php echo $key;?>" <?php if($key==$router){echo 'selected';}?>><?php echo $val['router_name'];?></option>
+                            <?php endforeach;?>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <br />
+                        <button class="btn btn-success btn-sm">Search</button>
+                    </div>
+                </div>
+                </form>
+                <!--table-nonfluid-->
+                <table class="table table-bordered table-striped table-hover data-table">
+                    <thead>
+                        <tr style="border-top:1px solid #D9D9D9;">
+                            <th>SL</th>
+                            <th>Area</th>
+                            <th>Building</th>
+                            <th>Router</th>
+                            <th>Local IP</th>
+                            <th>Remote IP first</th>
+                            <th>Remote IP last</th>
+                            <th>IP Block</th>
+                            <th style="width:65px;">Action</th>                            
+                        </tr>
+                    </thead>
+                    <tbody style="font-size:.90em;">
+                    <?php $i=0;?>
+                    <?php foreach($buildings as $key=>$val):?>
+                    <tr>
+                        <td class=""><?php echo ++$i;?>.</td>
+                        <td><?php echo $val['area'];?></td>
+                        <td><?php echo $val['building'];?></td>
+                        <td><?php echo isset($mikrotik_routers[$val['router_no']]['router_name']) ? $mikrotik_routers[$val['router_no']]['router_name'] : '';?></td>
+                        <td><?php echo $val['local_ip'];?></td>
+                        <td><?php echo $val['remote_ip_first'];?></td>
+                        <td><?php echo $val['remote_ip_last'];?></td>
+                        <td><?php echo $val['ip_block'];?></td>
+                        <td class="text-center">
+                            <a href="<?php echo BASE_URL.'/operation/building-update.php?id='.$key;?>" title="Edit Building Information" class="text-primary"><i class="fa fa-edit"></i> Edit</a>
+                        </td>
+                    </tr>
+                    <?php endforeach;?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

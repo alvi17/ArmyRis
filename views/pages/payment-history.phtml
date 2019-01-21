@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-xs-9">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon">
+                    <i class="fa fa-th"></i>
+                </span>
+                <h5>Current Balance: <?php echo $recharge_params['payment_balance'].' '.CURRENCY;?></h5>
+                <!--<span class="label label-info"></span>-->
+            </div>
+            <div class="widget-content nopadding">
+                <?php if(empty($data)):?>
+                <p><h4 class="text-center">No payment record found!</h4></p>
+                <?php else:?>
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Debit (<?php echo CURRENCY;?>)</th>
+                            <th>Credit (<?php echo CURRENCY;?>)</th>
+                            <th>Balance (<?php echo CURRENCY;?>)</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($data as $d): ?>
+                            <tr>
+                                <td class="b"><?php echo $d['type']; ?></td>
+                                <td class="text-right"><?php echo Utility::thousandSeperator($d['debit']); ?></td>
+                                <td class="text-right"><?php echo Utility::thousandSeperator($d['credit']); ?></td>
+                                <td class="text-right"><?php echo Utility::thousandSeperator($d['balance']); ?></td>
+                                <td><?php echo Date::niceDateTime($d['created_at']); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+                <?php endif;?>
+            </div>
+        </div>
+    </div>
+</div>

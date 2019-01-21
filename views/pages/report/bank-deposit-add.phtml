@@ -1,0 +1,59 @@
+<style>
+    textarea{width:75%;}
+</style>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon">
+                    <i class="fa fa-align-justify"></i>									
+                </span>
+                <h5><?php echo $pageTitle;?></h5>
+                <span title="" class="label label-info tip-left" style="padding:5px;" data-original-title="Click here to go to Bank Deposits page">
+                    <a href="bank-deposit-list.php" style="color: white;">Bank Deposits</a>
+                </span>
+            </div>
+            <div class="widget-content nopadding">
+                <form class="form-horizontal" method="post" action="">
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="date">Date</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10<?php if(isset($errors['date'])){echo ' has-error';}?>">
+                            <input type="text" data-date="<?php echo $date;?>" data-date-format="dd-mm-yyyy" class="datepicker" name="date" id="date" value="<?php echo $date;?>" placeholder="Date" autocomplete="off" />
+                            <?php if(isset($errors['date'])):?><span class="help-inline" for="date"><br><?php echo $errors['date'];?></span><?php endif;?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="amount">Amount</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10<?php if(isset($errors['amount'])){echo ' has-error';}?>">
+                            <input type="text" id="amount" name="amount" value="<?php echo $amount;?>" placeholder="Amount" autocomplete="off" />
+                            <?php if(isset($errors['amount'])):?><span class="help-inline" for="amount"><br><?php echo $errors['amount'];?></span><?php endif;?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="submit_by">Submitted by</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10<?php if(isset($errors['submit_by'])){echo ' has-error';}?>">
+                            <select name="submit_by" id="submit_by">
+                                <option value=""></option>
+                                <?php foreach($users as $key=>$val):?>
+                                <option value="<?php echo $key?>"<?php if($key==$submit_by)echo ' selected';?>><?php echo $val;?></option>
+                                <?php endforeach;?>
+                            </select>
+                            <?php if(isset($errors['submit_by'])):?><span class="help-inline" for="submit_by"><br><?php echo $errors['submit_by'];?></span><?php endif;?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="purpose">Purpose</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10<?php if(isset($errors['purpose'])){echo ' has-error';}?>">
+                            <textarea name="purpose" title="Purpose"><?php echo $purpose;?></textarea>
+                            <?php if(isset($errors['purpose'])):?><span class="help-inline" for="purpose"><br><?php echo $errors['purpose'];?></span><?php endif;?>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <input type="hidden" name="<?php echo TOKEN_LEVEL;?>" id="<?php echo TOKEN_LEVEL;?>" value="<?php echo Token::generate(TOKEN_LEVEL);?>">
+                        <input type="submit" value="Add" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>			
+    </div>
+</div>

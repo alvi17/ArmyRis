@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon">
+                    <i class="fa fa-align-justify"></i>									
+                </span>
+                <h5><?php echo $pageTitle;?></h5>
+                <span title="" class="label label-info tip-left" style="padding:5px;" data-original-title="Back to Problem Types">
+                    <a href="problem-type.php" style="color: white;">Problem Types</a>
+                </span>
+            </div>
+            <div class="widget-content nopadding">
+                <form class="form-horizontal" method="post" action="problem-type-add.php">
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="problem_type">Problem Type <span style='color:red;'>*</span></label>
+                        <div class="col-sm-9 col-md-9 col-lg-10<?php if(isset($errors['problem_type'])){echo ' has-error';}?>">
+                            <input type="text" class="form-control input-sm" name="problem_type" id="problem_type" value="<?php echo $problem_type;?>" placeholder="Problem Type" autocomplete="off" />
+                            <?php if(isset($errors['problem_type'])):?><span class="help-inline" for="problem_type"><?php echo $errors['problem_type'];?></span><?php endif;?>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <input type="hidden" name="<?php echo TOKEN_LEVEL;?>" id="<?php echo TOKEN_LEVEL;?>" value="<?php echo Token::generate(TOKEN_LEVEL);?>">
+                        <input type="submit" value="Add" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>			
+    </div>
+</div>

@@ -1,0 +1,114 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon">
+                    <i class="fa fa-th"></i>									
+                </span>
+                <h5><?php echo $pageTitle;?></h5>
+            </div>
+            <div class="widget-content nopadding">
+                <form action="disconnect-forecast.php" method="get">
+                <div class="row" style="font-size:.8em; margin-bottom: 0px;">
+                    <div class="col-md-2">
+                        Date from:
+                        <input type="text" data-date="<?php echo $date_from;?>" data-date-format="dd-mm-yyyy" id="date_from" name="date_from" value="<?php echo $date_from;?>" class="datepicker form-control input-sm" />
+                    </div>
+                    <div class="col-md-2">
+                        Date to:
+                        <input type="text" data-date="<?php echo $date_to;?>" data-date-format="dd-mm-yyyy" id="date_to" name="date_to"  value="<?php echo $date_to;?>" class="datepicker form-control input-sm" />
+                    </div>
+                    <div class="col-md-2">
+                        Name / Username / BA:
+                        <input type="text" class="form-control input-sm" name="str" id="str" value="<?php echo $str;?>" placeholder="" autocomplete="off" />
+                    </div>
+                </div>
+                <div class="row" style="font-size:.8em; margin-bottom: 20px;">
+                    <div class="col-md-2">
+                        Area:
+                        <select name="area" id="area" class="form-control input-sm">
+                            <option value=""></option>
+                            <?php foreach($areas as $key=>$val):?>
+                            <option value="<?php echo $key;?>" <?php if($key==$area){echo 'selected';}?>><?php echo $val;?></option>
+                            <?php endforeach;?>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        Building:
+                        <select name="bld" id="bld" class="form-control input-sm">
+                            <option value=""></option>
+                            <?php foreach($buildings as $key=>$val):?>
+                            <option value="<?php echo $key;?>" <?php if($key==$bld){echo 'selected';}?>><?php echo $val;?></option>
+                            <?php endforeach;?>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        Rank:
+                        <select name="rank" id="rank" class="form-control input-sm">
+                            <option value=""></option>
+                            <?php foreach($ranks as $key=>$val):?>
+                            <option value="<?php echo $key;?>" <?php if($key==$rank){echo 'selected';}?>><?php echo $val;?></option>
+                            <?php endforeach;?>
+                        </select>
+                    </div>
+                    &nbsp;<br>
+                    <button class="btn btn-success btn-sm"><span class="icon"><i class="fa fa-search"></i> </span> Search</button>
+                </div>
+                </form>
+                
+                <?php if(!empty($data)):?>
+                <div class="row">
+                    <table class="table table-bordered table-striped table-hover data-table">
+                        <thead>
+                            <tr style="border-top:1px solid #D9D9D9;">
+                                <th>SL</th>
+                                <th>Username</th>
+                                <th>Rank</th>
+                                <th>Fullname</th>
+                                <th>Mobile</th>
+                                <th>Address (House, Building, Area)</th>
+                                <th>Package</th>
+                                <th>Balance</th>
+                                <th>Disconnect at</th>                            
+                            </tr>
+                        </thead>
+                        <tbody style="font-size:.95em;">
+                        <?php $i=0;?>
+                        <?php foreach($data as $key=>$val):?>
+                        <tr>
+                            <td class=""><?php $sl = ($page-1)*LIMIT_PER_PAGE + ++$i; echo $sl;?>.</td>
+                            <td><?php echo $val['username'];?></td>
+                            <td><?php echo $val['rank'];?></td>
+                            <td><?php echo trim($val['firstname'].' '.$val['lastname']);?></td>
+                            <td><?php echo $val['official_mobile'];?></td>
+                            <td><?php echo $val['house_no'].', '.$val['building'].', '.$val['area'];?></td>
+                            <td><?php echo isset($packages[$val['package_id']]['name']) ? $packages[$val['package_id']]['name'] : '';?></td>
+                            <td class="text-right"><?php echo $val['balance'];?></td>
+                            <td><?php echo Date::niceDateTime5($val['disconnect_at']);?></td>
+                        </tr>
+                        <?php endforeach;?>
+                        </tbody>
+                    </table>
+                    <?php echo $paginationStr;?>
+                </div>
+                <?php endif;?>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+$(function() {
+    $('#area').on('change', function() {
+        $.ajax({
+            type : 'POST',
+            url  : '<?php echo BASE_URL;?>/modules/ajx/dd-buildings-by-area.php',
+            data : {id: $(this).val()},
+            success : function (msg) {
+                        $('#bld').html(msg);
+                    }
+        });
+    });
+});
+</script>

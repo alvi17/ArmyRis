@@ -1,0 +1,67 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon"><i class="fa fa-align-justify"></i></span>
+                <h5><?php echo $pageTitle;?></h5>
+            </div>
+            <div class="widget-content">
+                <div class="clearfix bbtm">
+                   <div class="col-sm-2 raf-lft">Username</div>
+                   <div class="col-sm-9 raf-rgt"><?php echo $myInfo['username'];?></div>
+                </div>
+                <div class="clearfix bbtm">
+                   <div class="col-sm-2 raf-lft">BA No</div>
+                   <div class="col-sm-9 raf-rgt"><?php echo $myInfo['ba_no'];?></div>
+                </div>
+                <div class="clearfix bbtm">
+                   <div class="col-sm-2 raf-lft">Fullname</div>
+                   <div class="col-sm-9 raf-rgt"><?php echo trim($myInfo['firstname'].' '.$myInfo['lastname']);?></div>
+                </div>
+                <div class="clearfix bbtm">
+                   <div class="col-sm-2 raf-lft">Rank</div>
+                   <div class="col-sm-9 raf-rgt"><?php echo $myInfo['rank'];?></div>
+                </div>
+                <div class="clearfix bbtm">
+                   <div class="col-sm-2 raf-lft">House</div>
+                   <div class="col-sm-2 raf-rgt"><?php echo $myInfo['house_no'];?></div>
+                   <div class="col-sm-2 raf-lft">Building</div>
+                   <div class="col-sm-2 raf-rgt"><?php echo $myInfo['building'];?></div>
+                   <div class="col-sm-2 raf-lft">Area</div>
+                   <div class="col-sm-2 raf-rgt"><?php echo $myInfo['area'];?></div>
+                </div>
+                <div class="clearfix bbtm">
+                   <div class="col-sm-2 raf-lft">Mobile No</div>
+                   <div class="col-sm-9 raf-rgt"><?php echo $myInfo['official_mobile'];?></div>
+                </div>
+                <div class="clearfix bbtm">
+                   <div class="col-sm-2 raf-lft">Email</div>
+                   <div class="col-sm-9 raf-rgt"><?php echo $myInfo['email'];?></div>
+                </div>
+                <div class="clearfix bbtm">
+                   <div class="col-sm-2 raf-lft">Status</div>
+                   <div class="col-sm-2 raf-rgt"><?php echo $myInfo['status'];?></div>
+                   <?php if($myInfo['status'] == 'Active'):?>
+                   <div class="col-sm-2 raf-lft">Connectivity up to</div>
+                   <div class="col-sm-5 raf-rgt"><?php echo Date::niceDateTime($myInfo['connection_to']);?></div>
+                   <?php endif;?>
+                </div>
+                <div class="clearfix bbtm">
+                   <div class="col-sm-2 raf-lft">Current Balance</div>
+                   <div class="col-sm-9 raf-rgt"><?php echo $myInfo['payment_balance'].' '.CURRENCY;?></div>
+                </div>
+                <div class="clearfix bbtm">
+                   <div class="col-sm-2 raf-lft">Package</div>
+                   <div class="col-sm-9 raf-rgt"><?php echo $myInfo['package'];?></div>
+                </div>
+                <div class="clearfix bbtm">
+                   <div class="col-sm-2 raf-lft">Category</div>
+                   <div class="col-sm-3 raf-rgt"><?php echo $myInfo['category'];?></div>
+                   <div class="col-sm-2 raf-lft">Complementary Amount</div>
+                   <div class="col-sm-3 raf-rgt"><?php echo $myInfo['complementary_amount'].' '.CURRENCY;?></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    

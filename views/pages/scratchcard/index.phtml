@@ -1,0 +1,75 @@
+<div class="row">
+    <div class="col-xs-9">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon">
+                    <i class="fa fa-th"></i>									
+                </span>
+                <h5><?php echo $pageTitle;?></h5>
+            </div>
+            <div class="widget-content nopadding">
+                <form action="index.php" method="get">
+                <div class="row" style="font-size:.8em; margin-bottom: 0px;">
+                    <div class="col-md-2">
+                        Card/Serial number:
+                        <input type="text" id="keyword" name="keyword" value="<?php echo $keyword;?>" class="form-control input-sm" />
+                    </div>
+                    <div class="col-md-2">
+                        <br>
+                    <button class="btn btn-success btn-sm">Search</button>
+                    </div>
+                </div>
+                </form>
+                
+                <?php if(!empty($data)):?>
+                <div class="row">
+                    <table class="table table-bordered table-striped table-hover data-table">
+                        <thead>
+                            <tr style="border-top:1px solid #D9D9D9;">
+                                <th>SL</th>
+                                <th>Card number</th>
+                                <th>Serial number</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Used by</th>
+                                <th>Used on</th>                            
+                            </tr>
+                        </thead>
+                        <tbody style="font-size:.95em;">
+                        <?php $i=0;?>
+                        <?php foreach($data as $key=>$val):?>
+                        <tr>
+                            <td class=""><?php $sl = ($page-1)*LIMIT_PER_PAGE + ++$i; echo $sl;?>.</td>
+                            <td><?php echo $val['code'];?></td>
+                            <td><?php echo $val['serial_no'];?></td>
+                            <td><?php echo $val['amount'];?></td>
+                            <td><?php echo $val['status'];?></td>
+                            <td><?php echo $val['used_by'];?></td>
+                            <td><?php echo Date::niceDateTime3($val['used_at']);?></td>
+                        </tr>
+                        <?php endforeach;?>
+                        </tbody>
+                    </table>
+                    <?php echo $paginationStr;?>
+                </div>
+                <?php endif;?>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+$(function() {
+    $('#area').on('change', function() {
+        $.ajax({
+            type : 'POST',
+            url  : '<?php echo BASE_URL;?>/modules/ajx/dd-buildings-by-area.php',
+            data : {id: $(this).val()},
+            success : function (msg) {
+                        $('#bld').html(msg);
+                    }
+        });
+    });
+});
+</script>

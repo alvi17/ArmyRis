@@ -1,0 +1,100 @@
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon">
+                    <i class="fa fa-align-justify"></i>
+                </span>
+                <h5><?php echo $pageTitle;?></h5>
+                <span title="" class="label label-info tip-left" style="padding:5px;" data-original-title="List Corporate Subscribers">
+                    <a href="list.php" style="color: white;">List</a>
+                </span>
+            </div>
+            <div class="widget-content nopadding">
+                <form class="form-horizontal" method="post" action="add.php" name="subscriber_add_upd" id="subscriber_add_upd">
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="firstname">Corporate Name</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10<?php if(isset($errors['firstname'])){echo ' has-error';}?>">
+                            <input type="text" class="form-control input-sm" name="firstname" id="firstname" value="<?php echo $firstname;?>" placeholder="Name of corporate subscriber" autocomplete="off" />
+                            <?php if(isset($errors['firstname'])):?><span class="help-inline" for="firstname"><?php echo $errors['firstname'];?></span><?php endif;?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="address">Address</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10<?php if(isset($errors['address'])){echo ' has-error';}?>">
+                            <input type="text" class="form-control input-sm" name="address" id="address" value="<?php echo $address;?>" placeholder="Address of corporate subscriber" autocomplete="off" />
+                            <?php if(isset($errors['address'])):?><span class="help-inline" for="address"><?php echo $errors['address'];?></span><?php endif;?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="official_mobile">Mobile</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10<?php if(isset($errors['official_mobile'])){echo ' has-error';}?>">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    Official Mobile Number
+                                    <input type="text" class="form-control input-sm" name="official_mobile" id="official_mobile" value="<?php echo $official_mobile;?>" placeholder="Official Mobile Number" autocomplete="off" />
+                                    <?php if(isset($errors['official_mobile'])):?><span class="help-inline" for="official_mobile"><?php echo $errors['official_mobile'];?></span><?php endif;?>
+                                </div>
+                                <div class="col-md-4<?php if(isset($errors['personal_mobile'])){echo ' has-error';}?>">
+                                    Personal Mobile Number
+                                    <input type="text" class="form-control input-sm" name="personal_mobile" id="personal_mobile" value="<?php echo $personal_mobile;?>" placeholder="Personal Mobile Number" autocomplete="off" />
+                                    <?php if(isset($errors['personal_mobile'])):?><span class="help-inline" for="personal_mobile"><?php echo $errors['personal_mobile'];?></span><?php endif;?>
+                                </div>
+                                <div class="col-md-4<?php if(isset($errors['residential_phone'])){echo ' has-error';}?>">
+                                    Residential Phone Number
+                                    <input type="text" class="form-control input-sm" name="residential_phone" id="residential_phone" value="<?php echo $residential_phone;?>" placeholder="Residential Phone Number" autocomplete="off" />
+                                    <?php if(isset($errors['residential_phone'])):?><span class="help-inline" for="residential_phone"><?php echo $errors['residential_phone'];?></span><?php endif;?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="email">Email</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10<?php if(isset($errors['email'])){echo ' has-error';}?>">
+                            <input type="text" class="form-control input-sm" name="email" id="email" value="<?php echo $email;?>" placeholder="Email" autocomplete="off" />
+                            <?php if(isset($errors['email'])):?><span class="help-inline" for="email"><?php echo $errors['email'];?></span><?php endif;?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="package">Connection Package</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10<?php if(isset($errors['package'])){echo ' has-error';}?>">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control input-sm" name="package" id="package" value="<?php echo $package;?>" placeholder="Package" autocomplete="off" />
+                                    <?php if(isset($errors['package'])):?><span class="help-inline" for="package"><?php echo $errors['package'];?></span><?php endif;?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="price">Connection Price (<?php echo CURRENCY;?>)</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10<?php if(isset($errors['price'])){echo ' has-error';}?>">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control input-sm" name="price" id="price" value="<?php echo $price;?>" placeholder="price" autocomplete="off" />
+                                    <?php if(isset($errors['price'])):?><span class="help-inline" for="price"><?php echo $errors['price'];?></span><?php endif;?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="remarks">Remarks</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10<?php if(isset($errors['remarks'])){echo ' has-error';}?>">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <textarea class="form-control input-sm" name="remarks" id="remarks"placeholder="Remarks"><?php echo $remarks;?></textarea>
+                                    <?php if(isset($errors['remarks'])):?><span class="help-inline" for="remarks"><?php echo $errors['remarks'];?></span><?php endif;?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <input type="hidden" name="<?php echo TOKEN_LEVEL;?>" id="<?php echo TOKEN_LEVEL;?>" value="<?php echo Token::generate(TOKEN_LEVEL);?>">
+                        <input type="submit" value="Create" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>			
+    </div>
+</div>

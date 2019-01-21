@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-xs-6">
+        <div class="widget-box">
+            <div class="widget-title">
+                <h5>Roles</h5>
+                <a class="btn btn-primary btn-xs" href="add.php" style="margin-top: 5px; margin-right: 5px; float:right;">&laquo; Add new role</a>
+            </div>
+            <div class="widget-content">
+                <!--table-nonfluid-->
+                <table class="table table-bordered table-striped table-hover ">
+                    <thead>
+                        <tr>
+                            <th>SL</th>
+                            <th>Name</th>
+                            <th>Action</th                          
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php $i=0;?>
+                    <?php foreach($roles as $role):?>
+                    <tr>
+                        <td><?php echo ++$i;?>.</td>
+                        <td><?php echo $role['name'];?></td>
+                        <td class="text-right"><a href="<?php echo BASE_URL.'/role/update.php?id='.$role['id'];?>"><i class="fa fa-edit"></i> Edit</a></td>
+                    </tr>
+                    <?php endforeach;?>
+                    </tbody>
+                </table>							
+            </div>
+        </div>
+    </div>
+</div>
+

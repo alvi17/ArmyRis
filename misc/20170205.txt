@@ -1,0 +1,13 @@
+ALTER TABLE `scratch_cards` DROP INDEX `code`;
+ALTER TABLE `scratch_cards` ADD UNIQUE `unique_code`(`code`, `amount`);
+
+
+
+ALTER TABLE `armyrisdev`.`scratch_card_logs`   
+  DROP COLUMN `type`, 
+  CHANGE `id_card_log_key` `id_lot_key` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  CHANGE `amount` `amount` INT(6) UNSIGNED NOT NULL  COMMENT 'Price of each card'  AFTER `description`,
+  CHANGE `qty` `qty` INT(6) UNSIGNED NOT NULL  COMMENT 'how many cards generated'  AFTER `amount`,
+  CHANGE `status_id` `status_id` TINYINT(1) UNSIGNED NOT NULL  COMMENT '0=temporarily generated, 1=confirmed, 2=cancled'  AFTER `qty`;
+
+RENAME TABLE `armyrisdev`.`scratch_card_logs` TO `armyrisdev`.`scratch_card_lots`;

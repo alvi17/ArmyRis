@@ -1,0 +1,75 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon">
+                    <i class="fa fa-th"></i>
+                </span>
+                <h5>Subscribers Suspended Till Now</h5>
+            </div>
+            <div class="widget-content nopadding">
+                <form action="suspended-till-now.php" method="get">
+                <div class="row" style="font-size:.8em; margin-bottom: 20px;">
+                    <div class="col-md-3">
+                        Date from:
+                        <input type="text" data-date="<?php echo $fr;?>" data-date-format="dd-mm-yyyy" id="fr" name="fr" value="<?php echo $fr;?>" class="datepicker form-control input-sm" />
+                    </div>
+                    <div class="col-md-3">
+                        Date to:
+                        <input type="text" data-date="<?php echo $to;?>" data-date-format="dd-mm-yyyy" id="to" name="to" value="<?php echo $to;?>" class="datepicker form-control input-sm" />
+                    </div>
+                    <div class="col-md-2">
+                        &nbsp;<br>
+                        <button class="btn btn-success btn-sm">Search</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon">
+                    <i class="fa fa-th"></i>                                    
+                </span>
+                <h5>Subscribers Suspended Till Now from <?php echo Date::niceDate($fr);?></h5>
+            </div>
+            <div class="widget-content nopadding">
+                <table class="table table-bordered table-striped table-hover" style="border-top:#229955 solid 1px;">
+                    <thead>
+                        <tr>
+                            <th>SL</th>
+                            <th>Username</th>
+                            <th>Name</th>
+                            <th>Rank</th>
+                            <th>Mobile</th>
+                            <th>Address (House, Building, Area)</th>
+                            <th>Package</th>
+                            <th>Inactive Days</th>
+                            <th>Router</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $i=0;?>
+                        <?php foreach ($data as $d): ?>
+                            <tr>
+                                <td class="text-right"><?php echo $limit*($page-1) + ++$i;?>.</td>
+                                <td class=""><?php echo $d['username'];?></td>
+                                <td class=""><?php echo trim($d['firstname'].' '.$d['lastname']);?></td>
+                                <td class=""><?php echo $d['rank'];?></td>
+                                <td class=""><?php echo $d['official_mobile'];?></td>
+                                <td class=""><?php echo $d['house_no'].', '.$d['building'].', '.$d['area'];?></td>
+                                <td class=""><?php echo $d['package'];?></td>
+                                <td class="text-right"><?php echo $d['inactive_days'];?></td>
+                                <td class=""><?php echo isset($mikrotik_routers[$d['router_no']]['router_name']) ? $mikrotik_routers[$d['router_no']]['router_name'] : '?'; ?></td>
+                            </tr>
+                        <?php endforeach;?>
+                    </tbody>
+                </table>
+                <?php echo $paginationStr;?>
+            </div>
+        </div>
+    </div>
+</div>

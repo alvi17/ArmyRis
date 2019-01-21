@@ -1,0 +1,49 @@
+<?php 
+$acl_pages = Session::get('acl_pages');
+if(!isset($pageCode)){
+    $pageCode = '';
+}
+?>
+
+        <div id="sidebar">
+			<ul>
+                <li class="<?php if($pageCode=='dashboard'){echo ' active open';}?>"><a href="<?php echo BASE_URL;?>"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+                <?php 
+                if(Session::get('usertype')=='system'):
+                    if(is_array($acl_pages)):
+                        foreach($acl_pages as $menu => $submenu):
+                            $is_menu_open = false;
+                            foreach ($submenu as $sub){if($sub['code']==$pageCode){$is_menu_open = true; break;}}
+                            ?>
+                            <li class="submenu<?php if($is_menu_open){echo ' active open';}?>">
+                                <a href="#"><i class="fa fa-th-list"></i> <span><?php echo $menu;?></span> <i class="arrow fa fa-chevron-right"></i></a>
+                                <ul>
+                                    <?php foreach($submenu as $key=>$val):?>
+                                    <?php if($val['is_menu']==1):?>
+                                    <li <?php if($pageCode == $val['code']){echo 'class="active"';}?>><a href="<?php echo BASE_URL.'/'.$val['relative_url'];?>"><?php echo $val['title'];?></a></li>
+                                    <?php endif;?>
+                                    <?php endforeach;?>
+                                </ul>
+                            </li>
+                        <?php
+                        endforeach;
+                    endif;
+                    else:?>
+                      <li class="<?php if($pageCode=='my-account'){echo ' active open';}?>"><a href="<?php echo BASE_URL;?>/my-account.php"><i class="fa fa-user"></i> <span>My Account</span></a></li>
+                      <li class="<?php if($pageCode=='change-password'){echo ' active open';}?>"><a href="<?php echo BASE_URL;?>/change-password.php"><i class="fa fa-key"></i> <span>Change Password</span></a></li>
+                      <?php /* if(Session::get('category')!='Free'):?>
+                      <li class="<?php if($pageCode=='recharge-account'){echo ' active open';}?>"><a href="<?php echo BASE_URL;?>/recharge-account.php"><i class="fa fa-plus-circle"></i> <span>Recharge Account</span></a></li>
+                      <li class="<?php if($pageCode=='internet-checkin'){echo ' active open';}?>"><a href="<?php echo BASE_URL;?>/internet-checkin.php"><i class="fa fa-cloud"></i> <span>Internet Check in</span></a></li>
+                      <?php endif;*/?>
+                      <li class="<?php if($pageCode=='payment-history'){echo ' active open';}?>"><a href="<?php echo BASE_URL;?>/payment-history.php"><i class="fa fa-file-text"></i> <span>Payment History</span></a></li>
+                      <li class="<?php if($pageCode=='connectivity-history'){echo ' active open';}?>"><a href="<?php echo BASE_URL;?>/connectivity-history.php"><i class="fa fa-file"></i> <span>Connectivity History</span></a></li>
+                <?php endif;?>
+			</ul>
+		
+		</div>
+
+<script type="text/javascript">
+  $('#mobile-menu a').on('click', function(){
+    $('#sidebar').toggle("slide", 1000)
+  })
+</script>

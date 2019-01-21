@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-xs-7">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon">
+                    <i class="fa fa-th"></i>									
+                </span>
+                <h5><?php echo $pageTitle;?></h5>
+            </div>
+            <div class="widget-content nopadding">
+                <div class="row" style="font-size:.8em; margin-bottom: 20px;">
+                <form action="payment-history-temporary.php" method="get">
+                    <div class="col-md-4">
+                        <input type="text" id="ba_no" name="ba_no" value="<?php echo $ba_no;?>" class="form-control input-sm" />
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-success btn-sm">Search</button>
+                    </div>
+                </form>
+                </div>
+                
+                <div class="row">
+				<?php //Utility::pr($data); exit;?>
+                    <table class="table table-bordered table-striped table-hover data-table">
+                        <thead>
+                            <tr style="border-top:1px solid #D9D9D9;">
+                                <th>SL#</th>
+                                <th>BA no</th>
+                                <th>Billed</th>
+                                <th>Disconnect</th>                         
+                            </tr>
+                        </thead>
+                        <tbody style="font-size:.95em;">
+                        <?php $i=0;?>
+                        <?php foreach($data as $key=>$val):?>
+                        <tr>
+                            <td class=""><?php echo ++$i;?>.</td>
+                            <td><?php echo $val['ba_no'];?></td>
+                            <td><?php echo $val['billed'];?></td>
+                            <td><?php echo $val['disconnect'];?></td>
+                        </tr>
+                        <?php endforeach;?>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <?php //Utility::pr($data);?>
+            </div>
+        </div>
+    </div>
+</div>

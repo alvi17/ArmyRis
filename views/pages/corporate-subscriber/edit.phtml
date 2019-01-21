@@ -1,0 +1,116 @@
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon">
+                    <i class="fa fa-align-justify"></i>
+                </span>
+                <h5><?php echo $pageTitle;?></h5>
+                <span title="" class="label label-info tip-left" style="padding:5px;" data-original-title="Corporate Subscriber Details">
+                    <a href="details.php?id=<?php echo $id;?>" style="color: white;">Details</a>
+                </span>
+            </div>
+            <div class="widget-content nopadding">
+                <form class="form-horizontal" method="post" action="" name="subscriber_add_upd" id="subscriber_add_upd">
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="firstname">Corporate Name</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10<?php if(isset($errors['firstname'])){echo ' has-error';}?>">
+                            <input type="text" class="form-control input-sm" name="firstname" id="firstname" value="<?php echo $data['firstname'];?>" placeholder="Name of Corporate Subscriber" autocomplete="off" />
+                            <?php if(isset($errors['firstname'])):?><span class="help-inline" for="firstname"><?php echo $errors['firstname'];?></span><?php endif;?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="address">Address</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10<?php if(isset($errors['address'])){echo ' has-error';}?>">
+                            <input type="text" class="form-control input-sm" name="address" id="address" value="<?php echo $data['address'];?>" placeholder="Address of corporate subscriber" autocomplete="off" />
+                            <?php if(isset($errors['address'])):?><span class="help-inline" for="address"><?php echo $errors['address'];?></span><?php endif;?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="official_mobile">Mobile</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10<?php if(isset($errors['official_mobile'])){echo ' has-error';}?>">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    Official Mobile Number
+                                    <input type="text" class="form-control input-sm" name="official_mobile" id="official_mobile" value="<?php echo $data['official_mobile'];?>" placeholder="Official Mobile Number" autocomplete="off" />
+                                    <?php if(isset($errors['official_mobile'])):?><span class="help-inline" for="official_mobile"><?php echo $errors['official_mobile'];?></span><?php endif;?>
+                                </div>
+                                <div class="col-md-4<?php if(isset($errors['personal_mobile'])){echo ' has-error';}?>">
+                                    Personal Mobile Number
+                                    <input type="text" class="form-control input-sm" name="personal_mobile" id="personal_mobile" value="<?php echo $data['personal_mobile'];?>" placeholder="Personal Mobile Number" autocomplete="off" />
+                                    <?php if(isset($errors['personal_mobile'])):?><span class="help-inline" for="personal_mobile"><?php echo $errors['personal_mobile'];?></span><?php endif;?>
+                                </div>
+                                <div class="col-md-4<?php if(isset($errors['residential_phone'])){echo ' has-error';}?>">
+                                    Residential Phone Number
+                                    <input type="text" class="form-control input-sm" name="residential_phone" id="residential_phone" value="<?php echo $data['residential_phone'];?>" placeholder="Residential Phone Number" autocomplete="off" />
+                                    <?php if(isset($errors['residential_phone'])):?><span class="help-inline" for="residential_phone"><?php echo $errors['residential_phone'];?></span><?php endif;?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="email">Email</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10<?php if(isset($errors['email'])){echo ' has-error';}?>">
+                            <input type="text" class="form-control input-sm" name="email" id="email" value="<?php echo $data['email'];?>" autocomplete="off" />
+                            <?php if(isset($errors['email'])):?><span class="help-inline" for="email"><?php echo $errors['email'];?></span><?php endif;?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="corporate_package">Connection Package</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10<?php if(isset($errors['corporate_package'])){echo ' has-error';}?>">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control input-sm" name="corporate_package" id="corporate_package" value="<?php echo $data['corporate_package'];?>" placeholder="Package" autocomplete="off" />
+                                    <?php if(isset($errors['corporate_package'])):?><span class="help-inline" for="corporate_package"><?php echo $errors['corporate_package'];?></span><?php endif;?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="price">Connection Price (<?php echo CURRENCY;?>)</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10<?php if(isset($errors['corporate_package_price'])){echo ' has-error';}?>">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control input-sm" name="corporate_package_price" id="corporate_package_price" value="<?php echo $data['corporate_package_price'];?>" placeholder="Price" autocomplete="off" />
+                                    <?php if(isset($errors['corporate_package_price'])):?><span class="help-inline" for="corporate_package_price"><?php echo $errors['corporate_package_price'];?></span><?php endif;?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="status_id">Status</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10<?php if(isset($errors['package'])){echo ' has-error';}?>">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <select name="status_id" id="status_id" class="form-control input-sm">
+                                    <option value="">-- SELECT STATUS --</option>
+                                    <?php foreach($subscriber_statuses as $key=>$val):?>
+                                    <option value="<?php echo $key;?>" <?php if($key==$data['status_id']){echo 'selected';}?>><?php echo $val;?></option>
+                                    <?php endforeach;?>
+                                </select>
+                                <?php if(isset($errors['status_id'])):?><span class="help-inline" for="status_id"><?php echo $errors['status_id'];?></span><?php endif;?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="remarks">Remarks</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10<?php if(isset($errors['remarks'])){echo ' has-error';}?>">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <textarea class="form-control input-sm" name="remarks" id="remarks"placeholder="Remarks"><?php echo $data['remarks'];?></textarea>
+                                    <?php if(isset($errors['remarks'])):?><span class="help-inline" for="remarks"><?php echo $errors['remarks'];?></span><?php endif;?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <input type="hidden" name="<?php echo TOKEN_LEVEL;?>" id="<?php echo TOKEN_LEVEL;?>" value="<?php echo Token::generate(TOKEN_LEVEL);?>">
+                        <input type="submit" value="Update" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>			
+    </div>
+</div>

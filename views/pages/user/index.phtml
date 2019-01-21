@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="widget-box">
+            <div class="widget-title">
+                <!--<a class="btn btn-primary btn-xs" href="add.php" style="margin-top: 5px; margin-left: 5px;">Add new user</a>-->
+                <span class="icon"><i class="fa fa-th-list"></i></span>
+                <h5>Users</h5>
+                <span title="" class="label label-info tip-left" style="padding:5px;" data-original-title="Add New User">
+                    <a href="add.php" style="color: white;">Add New User</a>
+                </span>
+            </div>
+            <div class="widget-content">
+                <table class="table table-bordered table-striped table-condensed table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Username</th>
+                            <th>Rank</th>
+                            <th>Fullname</th>
+                            <th>Mobile</th>
+                            <th>Role</th>
+                            <th>Action</th>                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $i=0;?>
+                        <?php foreach($data as $d):?>
+                        <?php //Utility::pa($d); exit;?>
+                        <tr>
+                            <td><?php echo ++$i;?>.</td>
+                            <td><?php echo $d['username'];?></td>
+                            <td><?php echo $d['rank'];?></td>
+                            <td><?php echo $d['fullname'];?></td>
+                            <td><?php echo $d['mobile'];?></td>
+                            <td><?php echo $d['roles'];?></td>
+                            <td class="text-right">
+                                <a href="<?php echo BASE_URL.'/user/detail.php?userid='.$d['id'];?>" title="View User Details" class="text-success"><i class="fa fa-eye"></i></a> | 
+                                <a href="<?php echo BASE_URL.'/user/update.php?userid='.$d['id'];?>" title="Edit User Information" class="text-primary"><i class="fa fa-edit"></i></a>
+                                <?php if($d['status_id'] != 2):?>
+                                 | <a href="javascript:void(0)" onclick="delete_conf(<?php echo $d['id'];?>, '<?php echo $d['username'];?>')" title="Delete User" class="text-warning"><i class="fa fa-times"></i></a>
+                            <?php endif;?>
+                            </td>
+                        </tr>
+                        <?php endforeach;?>
+                    </tbody>
+                </table>
+                <?php echo $paginationStr;?>							
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function delete_conf(uid, username)
+{
+    var con = confirm('Are you sure to delete username "'+username+'"?');
+    if(!con){
+        return false;
+    } else{
+        window.location.href = '<?php echo BASE_URL;?>/user/delete.php?id='+uid+'&uname='+username;
+    }
+}
+</script>

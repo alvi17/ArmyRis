@@ -1,0 +1,98 @@
+<?php 
+//    echo '$question: '. $question;
+//    echo '<br>';
+//    echo '$qtype: '. $qtype;
+//    echo '<br>';
+//    echo '$ques_opt: '; Utility::pa($ques_opt);
+//    echo '<br>';
+//    echo '$tot_options: '. $tot_options;
+?>
+<div class="row">
+    <div class="col-xs-12">
+        
+        <form class="form-horizontal" method="post" action="" name="user_inpt_frm" id="user_inpt_frm">
+            <div class="form-group">
+                <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="question">Question</label>
+                <div class="col-sm-9 col-md-9 col-lg-9<?php if(isset($errors['question'])){echo ' has-error';}?>">
+                    <input type="text" class="form-control input-sm" name="question" id="question" value="<?php echo $question;?>" placeholder="Question" autocomplete="off" />
+                    <?php if(isset($errors['question'])):?><span class="help-inline" for="question"><?php echo $errors['question'];?></span><?php endif;?>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="type">Question type</label>
+                <div class="col-sm-4 col-md-4 col-lg-5<?php if(isset($errors['type'])){echo ' has-error';}?>">
+                    <select name="qtype" id="qtype" class="form-control input-sm">
+                        <?php foreach(Survey::$question_types as $key=>$val):?>
+                        <option value="<?php echo $key;?>" <?php if($key==$qtype){echo 'selected';}?>><?php echo $val;?></option>
+                        <?php endforeach;?>
+                    </select>
+                    <?php if(isset($errors['qtype'])):?><span class="help-inline" for="qtype"><?php echo $errors['qtype'];?></span><?php endif;?>
+                </div>
+            </div>
+            <div class="form-group<?php if('text'==$qtype){echo ' disp-off';}?>" id="more_schd_blck">
+                <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="remote_ip_last">Options</label>
+                <div class="col-sm-5 col-md-5 col-lg-6<?php if(isset($errors['remote_ip_last'])){echo ' has-error';}?>">
+                    <?php if(isset($errors['ques_opt'])):?><span class="help-inline" style="color:#B94A48;"><?php echo $errors['ques_opt'];?></span><?php endif;?>
+                    <div id="more_schd_panel">
+                        <?php for($i=0; $i<$tot_options; $i++):?>
+                        <div style="margin-bottom:5px; clear:both;">
+                        <input type="text" class="form-control input-sm" name="ques_opt[]" id="ques_opt_<?php echo $i;?>" style="width:360px;" value="<?php echo isset($ques_opt[$i]) ? $ques_opt[$i] : '';?>" placeholder="Option" autocomplete="off" />
+                        <a href="javascript:void(0);" title="<?php echo $i;?>" class="remove" style="color:red; text-decoration:none;"> x</a>
+                        </div>
+                        <?php endfor;?>
+                    </div>
+                    <div style="margin-bottom:10px; clear:both;"></div>
+                    <a href="javascript:void(0);" onclick="set_div_content(); return false;" style="margin-left:0px; padding:4px; font-size:.9em; background:#5D5D5D; color:#FFFFFF; text-decoration:none;">Add more options</a> &nbsp; 
+                    <input type="hidden" name="tot_options" id="tot_options" value="1" />
+                    <div style="margin-bottom:10px; clear:both;"></div>
+                </div>
+            </div>
+            <div class="form-actions">
+                <input type="hidden" name="<?php echo TOKEN_LEVEL;?>" id="<?php echo TOKEN_LEVEL;?>" value="<?php echo Token::generate(TOKEN_LEVEL);?>">
+                <input type="submit" value="Submit" class="btn btn-primary">
+            </div>
+        </form>
+        
+        
+        
+    </div>
+</div> 
+
+
+
+<script type="text/javascript">
+    
+$(document).ready(function(){
+    $('#qtype').on('change', function() { 
+        if('text' === $(this).val()) {
+            $("#more_schd_blck").addClass("disp-off");
+        } else{
+            $("#more_schd_blck").removeClass("disp-off");
+        }
+    });
+});
+
+$(document).ready(function(){
+    $(".remove").on('click', function() {
+        alert('**');
+	    $(this).parent().remove();
+		var counter  = eval($("#tot_options").val()) - 1;
+		$("#tot_options").val(counter);
+		//if($('#tot_options').val()==''){$("#savebtn").css('visibility', 'hidden');}
+		if(counter<=0){$("#savebtn").css('visibility', 'hidden');}
+	    return false;
+	});
+});
+
+
+function set_div_content()
+{
+   var counter  = eval($("#tot_options").val()) + 1;
+	 var str = '<div style="margin-bottom:5px; clear:both;">'+
+              '<input type="text" class="form-control input-sm" name="ques_opt[]" id="ques_opt_'+counter+'" style="width:360px;" value="" placeholder="Option" autocomplete="off" />'+
+			  '<a href="javascript:void(0);" title="'+counter+'" class="remove" style="color:red; text-decoration:none;"> x</a></div>'; 
+    $('#more_schd_panel').append(str);
+    $("#tot_options").val(counter);
+	$("#savebtn").css('visibility', 'visible');
+}
+</script>

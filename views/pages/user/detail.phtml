@@ -1,0 +1,92 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon">
+                    <i class="fa fa-align-justify"></i>									
+                </span>
+                <h5>User Details</h5>
+                <span title="" class="label label-info tip-left" style="padding:5px;" data-original-title="Update User Information">
+                    <a href="update.php?userid=<?php echo $userid;?>" style="color: white;">Update User Information</a>
+                </span>
+            </div>
+            <div class="widget-content nopadding">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label">Username</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10">
+                            <?php echo $username;?>
+                        </div>
+                    </div>
+                    <!-- <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label">BA No</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10">
+                            <?php echo $ba_no;?>
+                        </div>
+                    </div> -->
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label">Rank</label>
+                        <div class="col-sm-4 col-md-4 col-lg-5"> 
+                            <?php echo isset($ranks[$rank]) ? $ranks[$rank] : '';?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label">Full Name</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <?php echo trim($firstname.' '.$lastname);?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="mobile">Mobile</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10">
+                            <?php echo $mobile;?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="email">Email</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10">
+                            <?php echo $email;?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="email">Is Support Assistat?</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10">
+                            <?php echo $is_support_asst=='1' ? 'Yes' : 'No';?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label">Roles</label>
+                        <?php if(isset($errors['roles'])){
+                            $hasErrorClass = ' has-error';
+                            $helpInlineClass = ' help-inline'; // color: #b94a48;
+                        }else{
+                            $hasErrorClass = '';
+                            $helpInlineClass = '';
+                        }?>
+                        <div class="col-sm-9 col-md-9 col-lg-10<?php echo $hasErrorClass;?>">
+                            <?php 
+                            $user_roles = '';
+                            foreach($roles as $key=>$val){
+                                if(in_array($key, $uroles)){
+                                    $user_roles .= $val .', ';
+                                }
+                            }
+                            echo rtrim($user_roles, ', ');
+                            ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label" for="status">Status</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10">
+                            <?php echo isset($user_statuses[$status]) ? $user_statuses[$status] : '?';?>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>			
+    </div>
+</div>

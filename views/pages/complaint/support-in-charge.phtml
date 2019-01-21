@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-xs-9">
+        <div class="widget-box">
+            <div class="widget-title">
+                <h5>Support in Charge</h5>
+            </div>
+            <div class="widget-content">
+                <!--table-nonfluid-->
+                <table class="table table-bordered table-striped table-hover ">
+                    <thead>
+                        <tr>
+                            <th>SL</th>
+                            <th>Area</th>
+                            <th>Name</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php $i=0;?>
+                    <?php foreach($data as $d):?>
+                    <tr>
+                        <td><?php echo ++$i;?>.</td>
+                        <td><?php echo '<b>'.$d['area_name'].'</b>';?></td>
+                        <td><?php 
+                        echo !empty($d['mobile']) || !empty($d['firstname'])
+                            ? trim($d['firstname'].' '.$d['lastname']) . ' (Mobile: '.$d['mobile'].')'
+                            : '';
+                        ?></td>
+                        <td class="text-right"><a href="<?php echo BASE_URL.'/complaint/support-in-charge-update.php?id='.$d['id'];?>"><i class="fa fa-edit"></i> Edit</a></td>
+                    </tr>
+                    <?php endforeach;?>
+                    </tbody>
+                </table>							
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php //Utility::pr($data);?>
