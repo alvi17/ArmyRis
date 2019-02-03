@@ -1,1 +1,0 @@
-E:/xampp/php/php.exe -f E:/xampp/htdocs/armyris/modules/db_bkp.php

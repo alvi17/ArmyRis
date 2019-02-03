@@ -1,6 +1,0 @@
-<?php
-if(in_array(1, Session::get('user_roles'))){
-    require BASE_DIRECTORY.'/views/pages/index-system-superadmin.phtml';
-} else{
-    require BASE_DIRECTORY.'/views/pages/index-system-other.phtml';
-}
